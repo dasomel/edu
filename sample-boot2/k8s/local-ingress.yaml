@@ -1,20 +1,16 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: sample-ingress
+  name: opdc-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: com.io
+    - host: opdc.io
       http:
         paths:
-          - path: /app
-            backend:
-              serviceName: common-original
-              servicePort: 8080
-    - host: sample.io
-      http:
-        paths:
-          - path: /sample
+          - path: /war
             backend:
               serviceName: egov-sample
               servicePort: 8080
@@ -22,7 +18,7 @@ spec:
             backend:
               serviceName: sample-boot
               servicePort: 8080
-    - host: sample2.io
+    - host: opdc2.io
       http:
         paths:
           - path: /gradle

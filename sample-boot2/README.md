@@ -1,5 +1,3 @@
-배포1
-=
 ## 1. /k8s/deployment.yaml
     apiVersion: apps/v1
     kind: Deployment
@@ -37,14 +35,12 @@
     metadata:
       name: sample-boot2
     spec:
-      type: NodePort
       selector:
         app: sample-boot2
       ports:
       - protocol: TCP
         port: 8080
         targetPort: 8080
-        nodePort: 30102
 ## 3. build & dockerizing
     ./gradlew clean war bootRepackage
     docker build . -t dasomel/sample-boot2:2.0.23
@@ -52,20 +48,19 @@
 ## 4. kubernetes build & deploy
     kubectl apply -f ./k8s/deployment.yaml
     kubectl apply -f ./k8s/service.yaml
-## 5. Confirm
-    http://아이피:30102/gradle/egovSampleList.do
-    
-배포2
-=
+
 ## 1. local-ingress.yaml
 ##### kubectl apply -f ./k8s/local-ingress.yaml
     apiVersion: networking.k8s.io/v1beta1
     kind: Ingress
     metadata:
       name: opdc-ingress
+    namespace: default
+    annotations:
+        kubernetes.io/ingress.class: nginx
     spec:
       rules:
-        - host: sample.io
+        - host: opdc.io
           http:
             paths:
               - path: /sample
@@ -76,7 +71,7 @@
                 backend:
                   serviceName: sample-boot
                   servicePort: 8080
-        - host: sample2.io
+        - host: opdc2.io
           http:
             paths:
               - path: /gradle
@@ -84,5 +79,4 @@
                   serviceName: sample-boot2
                   servicePort: 8080
 ## 2. Confirm
-    http://127.0.0.1:30102/gradle/egovSampleList.do
-    http://sample2.io/gradle/egovSampleList.do
+    http://opdc2.io/gradle/egovSampleList.do
