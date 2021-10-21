@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: sample-ingress
+spec:
+  rules:
+    - host: sample.io
+      http:
+        paths:
+          - path: /sample
+            backend:
+              serviceName: egov-sample
+              servicePort: 8080
+          - path: /maven
+            backend:
+              serviceName: sample-boot
+              servicePort: 8080
+    - host: sample2.io
+      http:
+        paths:
+          - path: /gradle
+            backend:
+              serviceName: sample-boot2
+              servicePort: 8080

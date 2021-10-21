@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="common" target="1.8" />
+      <module name="common-boot" target="1.8" />
+      <module name="common-jwt1" target="1.8" />
+      <module name="common-jwt2" target="1.8" />
+      <module name="egov.spring-boot2.main" target="1.8" />
+      <module name="egov.spring-boot2.test" target="1.8" />
+      <module name="sample-boot2-keycloak.sample-boot2.main" target="1.8" />
+      <module name="sample-boot2-keycloak.sample-boot2.test" target="1.8" />
+      <module name="spring-boot2" target="1.8" />
+      <module name="spring-boot2.main" target="1.8" />
+      <module name="spring-boot2.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
